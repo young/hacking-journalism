@@ -12,13 +12,13 @@ $(document).ready(function() {
   videoEl_.on(
     "timeupdate",
     function(event){
-      onTrackedVideoFrame(this.currentTime, this.duration);
+      onTrackedFrame(this.currentTime, this.duration);
     });
 
   audioEl_.on(
     "timeupdate",
     function(event){
-      onTrackedVideoFrame(this.currentTime, this.duration);
+      onTrackedFrame(this.currentTime, this.duration);
     });
 
 
@@ -26,16 +26,18 @@ $(document).ready(function() {
     this.currentTime = 50;
   }, false);
 
-  function onTrackedVideoFrame(currentTime, duration) {
-    //socket.emit('click', {'event': 'video at ' + currentTime});
+  function onTrackedFrame(currentTime, duration) {
     socket.emit('currentLocation', {'currentLocation': currentTime, 'username': username });
   }
+
   socket.on('connection', function(data) {
     currentLocation = data.setLocation;
   });
+
   socket.on('login-ready', function(data) {
     var el_;
-    if (true) {
+    var audio = location.search.substr(1).split('=')[0] === 'audio' ? true : false;
+    if (audio) {
       el_ = document.querySelector('.audio-player');
       el_.currentTime = Number(data.setLocation).toFixed(1);
       audioEl_.show();
