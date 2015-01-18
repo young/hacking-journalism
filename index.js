@@ -3,33 +3,21 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 2368;
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
-
-app.all("*", function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-  return next();
+app.configure('development', function(){
+  app.use(express.errorHandler());
 });
 
 // Routing
 app.use(express.static(__dirname + '/public/views'));
 
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
-
-
-
 io.set('origins', 'http://www.youtube.com:* http://localhost:*');
-// Chatroom
 
-// usernames which are currently connected to the chat
 var usernames = {};
 var numUsers = 0;
 
