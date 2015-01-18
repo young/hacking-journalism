@@ -1,5 +1,5 @@
 var socket = io();
-var currentLocation = 0;
+var currentLocation = 0.1;
 
 var username;
 $(document).ready(function() {
@@ -11,9 +11,6 @@ $(document).ready(function() {
     });
 
   var videoEl_ = document.querySelector('.video-player');
-  // videoEl_.onloadedmetadata = function() {
-  //   videoEl_.currentTime = currentLocation;
-  // };
 
   $(".video-player").on('loadedmetadata', function() {
     this.currentTime = 50;
@@ -27,7 +24,7 @@ $(document).ready(function() {
     currentLocation = data.setLocation;
   });
   socket.on('login-ready', function(data) {
-    videoEl_.currentTime = data.setLocation;
+    videoEl_.currentTime = Number(data.setLocation).toFixed(1);
     $(".video-player").show();
     videoEl_.play();
   });
