@@ -43,6 +43,9 @@ $(document).ready(function() {
       el_.currentTime = Number(data.setLocation).toFixed(1);
       audioEl_.show();
       el_.play();
+    } else if (isIos()) {
+      // show text
+      $('.text-div').show();
     } else {
       el_ = document.querySelector('.video-player');
 
@@ -74,3 +77,11 @@ function isMobile() {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 }
+
+/**
+ * Checks
+ * @return {Boolean} [description]
+ */
+function isIos() {
+  return (/(iPad|iPhone|iPod)/g).test( navigator.userAgent );
+};
