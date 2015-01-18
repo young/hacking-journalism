@@ -13,7 +13,7 @@ server.listen(port, function () {
 //});
 
 // Routing
-app.use(express.static(__dirname + '/public/views'));
+app.use(express.static(__dirname + '/public/view2'));
 
 
 //io.set('origins', 'http://www.youtube.com:* http://localhost:*');
