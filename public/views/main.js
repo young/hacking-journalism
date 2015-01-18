@@ -1,5 +1,6 @@
 var socket = io();
 var currentLocation = 0.1;
+// Cache selectors
 var videoEl_ = $('.video-player');
 var audioEl_ = $('.audio-player');
 
