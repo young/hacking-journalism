@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TechKno Video Sync</title>
+
+</head>
+<body>
+  <div class="message-box"></div>
+
+
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+  <div id="ytplayer"></div>
+
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+
+  <script>
+    // Load the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Replace the 'ytplayer' element with an <iframe> and
+    // YouTube player after the API code downloads.
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('ytplayer', {
+        height: '390',
+        width: '640',
+        videoId: 'MHWBEK8w_YY',
+        playerVars: {
+                html5: 1
+        },
+        events: {
+          //'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+    function onPlayerStateChange(data) {
+      ///debugger;
+      //socket.emit('player-event', data);
+      //debugger;
+      var currTime = player.getCurrentTime();
+      foo(data.data, currTime);
+    }
+    function foo(data, time) {
+      var eventType;
+      switch (data) {
+        case -1:
+          eventType='unstarted'
+          break;
+        case 3:
+          eventType='Buffering'
+          break;
+        case 1:
+          eventType='playing'
+          break;
+        case 2:
+          eventType='paused at: ' + time
+          break;
+        default:
+          eventType='dunno'
+      }
+
+      socket.emit('click', {'event': eventType});
+    }
+     //onYouTubePlayerAPIReady();
+
+  </script>
+</body>
+</html>
