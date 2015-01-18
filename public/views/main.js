@@ -38,14 +38,16 @@ $(document).ready(function() {
     var el_;
     // Check for audio query param
     // var audio = location.search.substr(1).split('=')[0] === 'audio' ? true : false;
+    if (isIos()) {
+      // show text
+      $('.text-div').show();
+      return;
+    }
     if (isMobile()) {
       el_ = document.querySelector('.audio-player');
       el_.currentTime = Number(data.setLocation).toFixed(1);
       audioEl_.show();
       el_.play();
-    } else if (isIos()) {
-      // show text
-      $('.text-div').show();
     } else {
       el_ = document.querySelector('.video-player');
 
