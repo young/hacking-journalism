@@ -3,9 +3,6 @@ var currentLocation = 0.1;
 var videoEl_ = $('.video-player');
 var audioEl_ = $('.audio-player');
 
-videoEl_.hide();
-audioEl_.hide();
-
 var username;
 
 $(document).ready(function() {
@@ -36,14 +33,13 @@ $(document).ready(function() {
 
   socket.on('login-ready', function(data) {
     var el_;
-    // Check for audio query param
-    // var audio = location.search.substr(1).split('=')[0] === 'audio' ? true : false;
+    // Autoplay not supported on ios. Default to text
     if (isIos()) {
-
       // show text
       $('.text-div').show();
       return;
     }
+    // If mobile, only use audio
     if (isMobile()) {
       el_ = document.querySelector('.audio-player');
       el_.currentTime = Number(data.setLocation).toFixed(1);
@@ -51,7 +47,6 @@ $(document).ready(function() {
       el_.play();
     } else {
       el_ = document.querySelector('.video-player');
-
       el_.currentTime = Number(data.setLocation).toFixed(1);
 
       $(".video-player").show();
@@ -71,6 +66,10 @@ function login() {
   socket.emit('login', {'username': username});
 }
 
+/**
+ * Check if the the user is on mobile
+ * @return {Boolean} If the user is on mobile
+ */
 function isMobile() {
   var check = false;
   (function(a) {
@@ -82,9 +81,9 @@ function isMobile() {
 }
 
 /**
- * Checks
- * @return {Boolean} [description]
+ * Check for ios
+ * @return {Boolean} If the user is on an ios device
  */
 function isIos() {
   return (/(iPad|iPhone|iPod)/g).test( navigator.userAgent );
-};
+}
