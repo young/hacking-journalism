@@ -8,15 +8,15 @@ var port = process.env.PORT || 2368;
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
+//app.configure('development', function(){
+//  app.use(express.errorHandler());
+//});
 
 // Routing
 app.use(express.static(__dirname + '/public/views'));
 
 
-io.set('origins', 'http://www.youtube.com:* http://localhost:*');
+//io.set('origins', 'http://www.youtube.com:* http://localhost:*');
 
 var usernames = {};
 var numUsers = 0;
