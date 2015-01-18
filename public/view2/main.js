@@ -38,6 +38,12 @@ $(document).ready(function() {
     var el_;
     // Check for audio query param
     // var audio = location.search.substr(1).split('=')[0] === 'audio' ? true : false;
+    if (isIos()) {
+
+      // show text
+      $('.text-div').show();
+      return;
+    }
     if (isMobile()) {
       el_ = document.querySelector('.audio-player');
       el_.currentTime = Number(data.setLocation).toFixed(1);
@@ -74,3 +80,11 @@ function isMobile() {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 }
+
+/**
+ * Checks
+ * @return {Boolean} [description]
+ */
+function isIos() {
+  return (/(iPad|iPhone|iPod)/g).test( navigator.userAgent );
+};

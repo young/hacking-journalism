@@ -39,6 +39,7 @@ $(document).ready(function() {
     // Check for audio query param
     // var audio = location.search.substr(1).split('=')[0] === 'audio' ? true : false;
     if (isIos()) {
+
       // show text
       $('.text-div').show();
       return;
