@@ -28,13 +28,19 @@ $(document).ready(function() {
     currentLocation = data.setLocation;
   });
   socket.on('login-ready', function(data) {
+    var el_;
     if (isIos()) {
-      audioEl_.currentTime = Number(data.setLocation).toFixed(1);
+      el_ = document.querySelector('.audio-player');
+      el_.currentTime = Number(data.setLocation).toFixed(1);
+      audioEl_.show();
+      el_.play();
     } else {
-      videoEl_.currentTime = Number(data.setLocation).toFixed(1);
+      el_ = document.querySelector('.video-player');
+
+      el_.currentTime = Number(data.setLocation).toFixed(1);
 
       $(".video-player").show();
-      videoEl_.play();
+      el_.play();
     }
 
   });
