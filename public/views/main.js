@@ -9,7 +9,13 @@ audioEl_.hide();
 var username;
 
 $(document).ready(function() {
-  $(".video-player").on(
+  videoEl_.on(
+    "timeupdate",
+    function(event){
+      onTrackedVideoFrame(this.currentTime, this.duration);
+    });
+
+  audioEl_.on(
     "timeupdate",
     function(event){
       onTrackedVideoFrame(this.currentTime, this.duration);
@@ -29,7 +35,7 @@ $(document).ready(function() {
   });
   socket.on('login-ready', function(data) {
     var el_;
-    if (isIos()) {
+    if (true) {
       el_ = document.querySelector('.audio-player');
       el_.currentTime = Number(data.setLocation).toFixed(1);
       audioEl_.show();
