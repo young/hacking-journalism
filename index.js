@@ -9,7 +9,7 @@ server.listen(port, function () {
 });
 
 // Routing
-app.use(express.static(__dirname + '/public/view2'));
+app.use(express.static(__dirname + '/public/views'));
 
 // Hacky fake database
 // TODO(jem): use a real datastore
