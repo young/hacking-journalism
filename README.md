@@ -1,6 +1,6 @@
 # Resume
 ====
-![alt text](https://github.com/young/hacking-journalism/misc/Resume_logo.png "Resume Logo")
+![](https://github.com/young/hacking-journalism/blob/master/misc/Resume_logo.png "Resume Logo")
 
 
 Resume represents the future of online content consumption.
