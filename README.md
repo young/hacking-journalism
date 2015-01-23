@@ -1,3 +1,6 @@
+#### Note
+This project is still in active development over at https://github.com/young/Resume
+
 # Resume
 ====
 ![](https://github.com/young/hacking-journalism/blob/master/misc/Resume_logo.png "Resume Logo")
@@ -26,9 +29,3 @@ Later that evening, the user decides to finish watching the video. Because Resum
 + Brandon Sugiyama @invibe
 + Molly Sugar
 + Jem Young @jemyoung
-
-
-#### Note
-This project is still in active development over at https://github.com/young/Resume
-
-
