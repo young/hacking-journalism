@@ -1,4 +1,4 @@
-#### Note
+### Note
 This project is still in active development over at https://github.com/young/Resume
 
 # Resume
